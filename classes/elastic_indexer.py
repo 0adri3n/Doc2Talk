@@ -6,13 +6,13 @@ class ElasticIndexer:
     
     def __init__(self, index_name="pdf_chunks"):
         """
-        Initialisation de l'indexeur Elasticsearch.
+        Init Elasticsearch indexer.
         """
         self.ip = "127.0.0.1"
         self.port = "9200"
         self.url = "http://" + self.ip + ":" + self.port
         self.username = "elastic"
-        with open("config.json", "r") as fichier:
+        with open("classes/config.json", "r") as fichier:
             config = json.load(fichier)
             self.password = config.get("password")
 
@@ -22,7 +22,7 @@ class ElasticIndexer:
 
     def create_index_if_not_exists(self):
         """
-        Crée un index Elasticsearch s'il n'existe pas déjà.
+        Create Elastic indexer if not exists.
         """
         if not self.es.indices.exists(index=self.index_name):
             mapping = {
@@ -41,19 +41,19 @@ class ElasticIndexer:
                                 "timestamp": {"type": "date"}
                             }
                         },
-                        "chunk": {"type": "text"}  # Ajout du champ chunk pour stocker le texte
+                        "chunk": {"type": "text"}
                     }
                 }
             }
             self.es.indices.create(index=self.index_name, body=mapping)
-            print(f"Index '{self.index_name}' créé.")
+            print(f"Index '{self.index_name}' created.")
         else:
-            print(f"L'index '{self.index_name}' existe déjà.")
+            print(f"index '{self.index_name}' already exist.")
 
 
     def index_chunks(self, chunks):
         """
-        Indexe les chunks vectorisés dans Elasticsearch.
+        Index chunks in Elasticsearch.
         """
         actions = []
         for chunk in chunks:
@@ -61,18 +61,18 @@ class ElasticIndexer:
                 "_index": self.index_name,
                 "_source": {
                     "vector": chunk['vector'],
-                    "chunk": chunk['chunk'],  # Ajout du texte du chunk ici
+                    "chunk": chunk['chunk'],
                     "metadata": chunk['metadata']
                 }
             }
             actions.append(action)
 
         helpers.bulk(self.es, actions)
-        print(f"{len(chunks)} chunks indexés dans Elasticsearch.")
+        print(f"{len(chunks)} chunks indexed in Elasticsearch.")
 
     def delete_all_documents(self):
         """
-        Supprime tous les documents de l'index.
+        Delete all docs from index.
         """
         self.es.delete_by_query(index=self.index_name, body={"query": {"match_all": {}}})
-        print(f"Tous les documents de l'index '{self.index_name}' ont été supprimés.")
+        print(f"All docs from index '{self.index_name}' removed.")

@@ -9,38 +9,32 @@ class QueryHandler:
         self.port = "9200"
         self.url = f"http://{self.ip}:{self.port}"
         self.username = "elastic"
-        with open("config.json", "r") as fichier:
+        with open("classes/config.json", "r") as fichier:
             config = json.load(fichier)
             self.password = config.get("password")
 
-        # Initialiser Elasticsearch
         try:
             self.indexer = Elasticsearch(self.url, basic_auth=(self.username, self.password))
-            # Vérifiez si l'index existe
             if not self.indexer.indices.exists(index=index_name):
-                raise ValueError(f"L'index '{index_name}' n'existe pas.")
+                raise ValueError(f"Index '{index_name}' don't exist.")
             self.index_name = index_name
         except exceptions.ConnectionError as e:
-            print(f"Erreur de connexion à Elasticsearch: {e}")
+            print(f"Elasticsearch connection error: {e}")
             raise
         except Exception as e:
-            print(f"Une erreur s'est produite lors de l'initialisation d'Elasticsearch: {e}")
+            print(f"Error when init Elasticsearch: {e}")
             raise
 
-        # Initialiser le CrossEncoder pour le reranking
         self.cross_encoder = CrossEncoder(reranker_model)
 
     def rerank_results(self, question, results_as_list):
         """
-        Rerank les résultats de recherche en utilisant le CrossEncoder.
+        Rerank results using CrossEncoder.
         """
-        # Créer les paires pour le CrossEncoder à partir de results_as_list
         pairs = [(question, result['Chunk Text']) for result in results_as_list]
 
-        # Prédire les scores avec le CrossEncoder
         scores = self.cross_encoder.predict(pairs)
 
-        # Associer les scores aux résultats et trier
         reranked_results = sorted(zip(results_as_list, scores), key=lambda x: x[1], reverse=True)
 
         return [result for result, _ in reranked_results]
