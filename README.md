@@ -11,7 +11,7 @@ Please pull Llama 3.2 by executing ```ollama pull llama3.2``` in the Ollama Dock
 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html" target="_blank">Installation link</a> | 
 <a href="https://dev.to/wangpin34/how-to-disable-ssl-authencation-of-elasticsearch-46je" target="_blank">Remove SSL</a>
 
-Python Packages installation : ```pip install elasticsearch sentence_transformers PyPDF2 flask flask_limiter --user```
+Python Packages installation : ```pip install elasticsearch sentence_transformers PyPDF2 flask flask_limiter flask_wtf --user```
 
 
 <img src="https://github.com/0adri3n/Doc2Talk/blob/master/screen_web.png"/>
