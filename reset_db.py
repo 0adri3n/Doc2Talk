@@ -6,9 +6,7 @@ choice = input("Are you sure to proceed [Y/N] > ")
 
 if choice == "Y" :
 
-    with open("pdfs/cache/indexed.json", "w") as cache :
-        cache.write()
-        cache.close()
+    confirm = input("Please remove pdfs/cache/config.json file then press enter.")
 
     print("\n[Cache file reset]")
 
