@@ -1,38 +1,87 @@
-# Doc2Talk
-Use LLM to interact with docs
+<h1 align="center" id="title">Doc2Talk</h1>
 
-Require : 
+<p align="center"><img src="https://cdn.icon-icons.com/icons2/4042/PNG/512/bot_smile_robot_robo_chatbot_assistant_advisor_icon_256844.png" alt="project-image" width="200"></p>
 
-- Ollama on Docker (No edits necessary) | 
-<a href="https://hub.docker.com/r/ollama/ollama" target="_blank">Installation link</a> |
-Please pull Llama 3.2 by executing ```ollama pull llama3.2``` in the Ollama Docker container terminal.
+<p id="description">Use LLM in Python to interact with your documentations.</p>
 
-- Elasticsearch (Remove SSL protection) | 
+---
+
+
+<h2>Project Screenshots:</h2>
+
+![image](https://github.com/user-attachments/assets/5ccacb5b-3a82-40fa-8284-796afa7ebc3d)
+
+![image](https://github.com/user-attachments/assets/d94efb12-6219-4a1b-9b4f-f511daefbe30)
+
+
+
+
+<h2>🧐 Features</h2>
+
+Here're some of the project's best features:
+
+*   Upload your PDFs, chunk them and vectorize it
+*   Store them in your Elastic Docker container
+*   Host your models locally (privacy max 😎)
+*   Host your Ollama server
+*   Interact with your own chatbot to learn easily from your documentations
+
+Here're some of the project's <i>worst</i> features:
+
+*   Use a LOT of ressources
+
+<h2>🛠️ Installation Steps</h2>
+
+1 . Install Docker Desktop (for Windows/Mac/Linux) <a href="https://www.docker.com/products/docker-desktop/">here</a>
+
+2 . Install Python <a href="https://www.python.org/downloads/">here</a>.
+
+3 . Get the necessary Python packages :
+
+```pip install elasticsearch sentence_transformers PyPDF2 flask flask_limiter --user```
+
+4 . Set up Ollama and Elasticsearch containers :
+
+- Ollama (No edits necessary) | 
+<a href="https://hub.docker.com/r/ollama/ollama" target="_blank">Installation link</a>
+
+**Please pull Llama 3.2 by executing ```ollama pull llama3.2``` in the Ollama Docker container terminal.**
+
+- Elasticsearch (Remove SSL protection necessary) | 
 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html" target="_blank">Installation link</a> | 
 <a href="https://dev.to/wangpin34/how-to-disable-ssl-authencation-of-elasticsearch-46je" target="_blank">Remove SSL</a>
 
+**Please copy the password outputed by Elasticsearch on it's first start and put it in the ```classes/config.json``` file.**
 
-Installation : 
+4 . Execute ```download_model.py``` to download CrossEncoder and SentenceTransformers models locally (Your data is YOUR data.)
 
+5 . First start ? Execute ```reset_db.py``` to index your very first PDFs to Elastic. Don't forget to put them in the ```pdfs``` folder !
 
-1 : 
-
-Python Packages installation : ```pip install elasticsearch sentence_transformers PyPDF2 flask flask_limiter --user```
-
-2 : 
-
-Execute ```download_model.py``` to download CrossEncoder and SentenceTransformers models locally (Your data is YOUR data.)
-
-3 :
-
-First start ? Execute ```reset_db.py``` to index your very first PDFs to Elastic.
-
-4 : 
-
-Execute ```web_server.py``` and reach your local web server !
+6 . Execute ```web_server.py``` and reach your local web server !
 
 
-<img src="https://github.com/0adri3n/Doc2Talk/blob/master/screen_web.png"/>
+<p>3. That's it ! Doc2Talk is ready 🕺</p>
 
+<h2>📃 To-Do List</h2>
 
-<img src="https://github.com/0adri3n/Doc2Talk/blob/master/screen_docker.png"/>
+- [ ] Better GUI
+- [ ] Optimize performances
+- [ ] Create different context, avoid removing all PDFs everytime
+- [ ] So, multiple chats
+
+<h2>💻 Built with</h2>
+
+Technologies used in the project:
+
+*   Python
+*   Flask
+*   Docker
+*   HuggingFace models
+*   Ollama
+*   ElasticSearch
+
+<h2>🛡️ License:</h2>
+
+This project is licensed under the MIT
+
+<h2>💖Like my work?</h2>
