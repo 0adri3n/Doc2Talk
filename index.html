@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doc2Talk</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index_s.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='img/icon.ico') }}">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Doc2Talk</h1>
+        </div>
+        <nav class="menu">
+            <a href="/" class="nav-button">Accueil</a>
+            <a href="#" class="nav-button">Aide</a>
+            <a href="/reports" class="nav-button">Data Reports</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="chat-container">
+            <div class="messages-container">
+                {% if history %}
+                {% for item in history %}
+                <div class="message user-message">
+                    <strong>Vous:</strong> {{ item.question }}
+                </div>
+                <div class="message bot-message">
+                    <strong>Bot:</strong> {{ item.answer }}
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+            
+            <form action="/ask" method="POST" class="input-container">
+                {{ form.hidden_tag() }}
+                {{ form.question(class_="question-input", size=50, placeholder="Posez votre question ici...") }}
+                {{ form.submit(class_="submit-button") }}
+            </form>
+            <form action="/clear_history" method="POST" class="input-container">
+                {{ clearform.hidden_tag() }}
+                {{ clearform.submit(class_="clear-button") }}
+            </form>
+
+        </div>
+    </main>
+</body>
+</html>
