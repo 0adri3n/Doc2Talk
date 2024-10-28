@@ -4,7 +4,8 @@ Use LLM to interact with docs
 Require : 
 
 - Ollama on Docker (No edits necessary) | 
-<a href="https://hub.docker.com/r/ollama/ollama" target="_blank">Installation link</a>
+<a href="https://hub.docker.com/r/ollama/ollama" target="_blank">Installation link</a> |
+Please pull Llama 3.2 by executing ```ollama pull llama3.2``` in the Ollama Docker container terminal.
 
 - Elasticsearch (Remove SSL protection) | 
 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html" target="_blank">Installation link</a> | 
