@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapports Doc2Talk</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index_s.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Doc2Talk</h1>
+        </div>
+        <nav class="menu">
+            <a href="/" class="nav-button">Accueil</a>
+            <a href="#" class="nav-button">Aide</a>
+            <a href="/reports" class="nav-button">Data Reports</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="center-content">
+            <h1>Rapports des Requêtes</h1>
+            <h2>Top 10 des Mots-Clés</h2>
+            <img src="{{ url_for('static', filename='data/img/keyword_report.png') }}" alt="Top 10 des Mots-Clés" />
+
+            <h2>Top 10 des Adresses IP</h2>
+            <img src="{{ url_for('static', filename='data/img/ip_report.png') }}" alt="Top 10 des Adresses IP" />
+        </div>
+    </main>
+</body>
+</html>

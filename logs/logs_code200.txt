@@ -1,0 +1,42 @@
+[Doc2Talk v1.0] - 2024-10-15 11:12:33 - New request : hello | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-15 11:15:55 - New request: ordina | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-15 11:35:15 - New request: Cuisiner une quiche | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-15 11:35:15 - New request: Division en Python | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-15 11:35:15 - New request: Cuisiner en Python | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-15 11:35:15 - New request: Cours de Python efficace | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-15 11:35:15 - New request: Comment faire un script | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-15 11:41:13 - New request: Comment python | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-15 11:41:13 - New request: Comment quiche | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-15 11:41:13 - New request: Comment LLM | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-15 11:41:13 - New request: Comment Question | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-15 11:41:13 - New request: Comment présent | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-15 15:14:46 - New request: Comment parler anglais | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-15 15:14:46 - New request: Comment parler espagnol | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-15 15:14:46 - New request: Comment parler italien | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-28 14:28:35 - New request: Quel est le plus gros chien ? | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-28 14:29:29 - New request: Quel est le plus gros chien ? | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-28 14:29:29 - New request: Quel est le plus gros chien ? | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-28 14:29:29 - New request: Quel est le plus gros chien ? | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-28 14:29:29 - New request: Quel est le plus gros chien ? | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-28 14:29:29 - New request: Quel est le plus gros chien ? Pourquoi ? | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-28 14:29:29 - New request: Quel est le plus gros chien ? Pourquoi ? | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-28 14:36:45 - New request: Quel est le plus gros chien ? Pourquoi ? | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-28 14:36:45 - New request: Quel est le plus petit chien ? Pourquoi ? | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-28 14:36:45 - New request: J'aimerais adopter un chien mais je n'en ai jamais eu. Quel serait un chien facile à dresser et gentil avec les enfants ? | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-28 14:36:45 - New request: J'aimerais adopter un chien mais je n'en ai jamais eu. Quel serait un chien facile à dresser et gentil avec les enfants ? | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-28 14:36:45 - New request: Quel est ton chien favori ? | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-28 14:36:45 - New request: Quel est le plus gros chien ? Pourquoi ? | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-28 14:36:45 - New request: Quel est le plus gros chien ? Pourquoi ? | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-28 15:04:08 - New request: Quel est le plus gros chien ? Pourquoi ? | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-28 15:04:08 - New request: Quel est le plus gros chien ? Pourquoi ? | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-28 15:04:08 - New request: Quel est le plus gros chien ? Pourquoi ? | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-28 15:04:08 - New request: Quel est le plus gros chien ? | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-28 15:12:36 - New request: Quel est le plus gros chien ? | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-28 15:14:42 - New request: Quel est le plus gros chien ? | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-28 15:15:09 - New request: Quel est le plus gros chien ? | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-28 15:15:09 - New request: Quel est le plus gros chien ? | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-28 15:15:09 - New request: Quel est le plus gros chien ? | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-28 15:15:09 - New request: Quel est le plus gros chien ? | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-28 15:17:23 - New request: Quel est le plus gros chien ? | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-28 15:17:23 - New request: J'aimerais adopter un chien mais je n'en ai jamais eu. Quel serait un chien facile à dresser et gentil avec les enfants ? | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
+[Doc2Talk v1.0] - 2024-10-28 15:17:23 - New request: Et toi, quel est ton chien favori ? | From : 192.168.1.73 - Hostname : host.docker.internal | Code 200
