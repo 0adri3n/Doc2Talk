@@ -1,5 +1,6 @@
 from sentence_transformers import CrossEncoder
 from elasticsearch import Elasticsearch, exceptions
+import json
 
 class QueryHandler:
 
@@ -8,7 +9,9 @@ class QueryHandler:
         self.port = "9200"
         self.url = f"http://{self.ip}:{self.port}"
         self.username = "elastic"
-        self.password = "Mck35G-U8mqPqdawQFqB"
+        with open("config.json", "r") as fichier:
+            config = json.load(fichier)
+            self.password = config.get("password")
 
         # Initialiser Elasticsearch
         try:

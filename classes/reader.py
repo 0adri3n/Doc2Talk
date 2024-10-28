@@ -1,7 +1,6 @@
 #coding: utf-8
 import PyPDF2
 import re
-import unicodedata
 
 class Reader:
 

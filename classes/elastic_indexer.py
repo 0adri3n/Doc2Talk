@@ -1,5 +1,6 @@
 #coding: utf-8
 from elasticsearch import Elasticsearch, helpers
+import json
 
 class ElasticIndexer:
     
@@ -11,7 +12,9 @@ class ElasticIndexer:
         self.port = "9200"
         self.url = "http://" + self.ip + ":" + self.port
         self.username = "elastic"
-        self.password = "Mck35G-U8mqPqdawQFqB"
+        with open("config.json", "r") as fichier:
+            config = json.load(fichier)
+            self.password = config.get("password")
 
         self.es = Elasticsearch(self.url, basic_auth=(self.username, self.password))
         self.index_name = index_name

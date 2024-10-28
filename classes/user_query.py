@@ -1,6 +1,6 @@
 from sentence_transformers import SentenceTransformer, models
 from elasticsearch import Elasticsearch
-import numpy as np
+import json
 
 class UserQuery:
     
@@ -12,7 +12,9 @@ class UserQuery:
         self.port = "9200"
         self.url = "http://" + self.ip + ":" + self.port
         self.username = "elastic"
-        self.password = "Mck35G-U8mqPqdawQFqB"
+        with open("config.json", "r") as fichier:
+            config = json.load(fichier)
+            self.password = config.get("password")
 
         # Initialiser Elasticsearch
         self.es = Elasticsearch(self.url, basic_auth=(self.username, self.password))
