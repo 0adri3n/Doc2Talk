@@ -14,6 +14,9 @@
 ![image](https://github.com/user-attachments/assets/d94efb12-6219-4a1b-9b4f-f511daefbe30)
 
 
+<h2>⚙ Project Architecture</h2>
+
+![image](https://github.com/user-attachments/assets/f5efdedb-3937-4936-8329-d41fc6053e04)
 
 
 <h2>🧐 Features</h2>
