@@ -9,10 +9,9 @@
 
 <h2>Project Screenshots:</h2>
 
-![image](https://github.com/user-attachments/assets/5ccacb5b-3a82-40fa-8284-796afa7ebc3d)
-
 ![image](https://github.com/user-attachments/assets/d94efb12-6219-4a1b-9b4f-f511daefbe30)
 
+![image](https://github.com/user-attachments/assets/5ccacb5b-3a82-40fa-8284-796afa7ebc3d)
 
 <h2>⚙ Project Architecture</h2>
 
