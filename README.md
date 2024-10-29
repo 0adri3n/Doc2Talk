@@ -66,11 +66,13 @@ Here're some of the project's <i>worst</i> features:
 
 <h2>📃 To-Do List</h2>
 
-- [ ] Docker Image for easy deployment
+- [ ] Powershell/Bash script to deploy automatically Docker instances
+- [ ] Docker Image of Doc2Talk for easy deployment
 - [ ] Better GUI
 - [ ] Optimize performances
 - [ ] Create different context, avoid removing all PDFs everytime
 - [ ] So, multiple chats
+- [ ] Progression bar when PDF indexing
 
 <h2>💻 Built with</h2>
 
