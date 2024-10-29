@@ -67,6 +67,7 @@ Here're some of the project's <i>worst</i> features:
 
 <h2>📃 To-Do List</h2>
 
+- [ ] Docker Image for easy deployment
 - [ ] Better GUI
 - [ ] Optimize performances
 - [ ] Create different context, avoid removing all PDFs everytime
