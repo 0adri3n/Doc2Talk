@@ -11,9 +11,9 @@ class Logger:
         self.file_log = True
 
 
-    def send_log(self, message, client_ip, client_hostname, r_code) :
+    def send_log(self, message, client_ip, client_hostname, r_code, answer) :
 
-        log = "[" + self.software + " " + self.version + "] - " + self.date + " - " + message + " | From : " + client_ip + " - Hostname : " + client_hostname + " | Code " + str(r_code)
+        log = "[" + self.software + " " + self.version + "] - " + self.date + " - " + message + " | From : " + client_ip + " - Hostname : " + client_hostname + " | Code " + str(r_code) + " | Answer : " + answer
 
         if self.file_log : 
 
