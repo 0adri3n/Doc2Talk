@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doc2Talk</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index_s.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='img/icon.ico') }}">
 </head>
 <body>
     <header>
@@ -26,7 +27,7 @@
                 <div class="message user-message">
                     <strong>Vous:</strong> {{ item.question }}
                 </div>
-                <div class="message bot-message">
+                <div class="message bot-message" style="white-space: pre-line">
                     <strong>Bot:</strong> {{ item.answer }}
                 </div>
                 {% endfor %}
