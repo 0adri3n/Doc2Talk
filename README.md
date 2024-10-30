@@ -68,6 +68,7 @@ Here're some of the project's <i>worst</i> features:
 
 <h2>📃 To-Do List</h2>
 
+- [ ] Translate to English (GUI, script)
 - [ ] Powershell/Bash script to deploy automatically Docker instances
 - [ ] Docker Image of Doc2Talk for easy deployment
 - [ ] Better GUI
