@@ -40,7 +40,7 @@ Here're some of the project's <i>worst</i> features:
 
 3 . Get the necessary Python packages :
 
-```pip install elasticsearch sentence_transformers PyPDF2 flask flask_limiter --user```
+```pip install elasticsearch sentence_transformers PyPDF2 flask flask_limiter tqdm --user```
 
 4 . Set up Ollama and Elasticsearch containers :
 
