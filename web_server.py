@@ -11,6 +11,7 @@ import json
 
 from classes.user_query import UserQuery
 from classes.query_handler import QueryHandler
+from classes.elastic_indexer import ElasticIndexer
 
 app = Flask(__name__)
 
@@ -25,9 +26,6 @@ limiter = Limiter(
 csrf = CSRFProtect(app)
 
 logger = Logger()
-user_query = UserQuery(index_name="pdf_chunks")
-query_handler = QueryHandler(index_name="pdf_chunks")
-
 
 def generate_prompt(context_chunks, question):
     """
@@ -79,7 +77,10 @@ def get_response_from_ollama(prompt):
 def home():
     form = QuestionForm()
     clearform = ClearForm()
-    return render_template('index.html', form=form, clearform=clearform)
+    indexer = ElasticIndexer() 
+    indices = indexer.get_all_indices() 
+    return render_template('index.html', form=form, clearform=clearform, indices=indices)
+
 
 @app.route('/ask', methods=['POST'])
 @limiter.limit("5 per minute")
@@ -93,14 +94,19 @@ def ask_question():
 
     form = QuestionForm()
 
-    # Initialiser l'historique dans la session si elle n'existe pas encore
+    # Initialize session history if it doesn't exist
     if 'history' not in session:
         session['history'] = []
 
     if form.validate_on_submit():
         question = form.question.data
+        selected_index = request.form.get('selected_index', 'pdf_chunks')  # Default index
 
-        # Choisir une méthode (par exemple, standard, knn, rrf, boost)
+        # Use the selected index for user_query and query_handler
+        user_query = UserQuery(index_name=selected_index)
+        query_handler = QueryHandler(index_name=selected_index)
+
+        # Query and process the response
         response = user_query.query(question, method="rrf")
         results = user_query.get_metadata_as_list(response)
         reranked_results = query_handler.rerank_results(question=question, results_as_list=results)
@@ -109,7 +115,7 @@ def ask_question():
 
         answer = get_response_from_ollama(prompt)
 
-        # Ajouter la question et la réponse à l'historique de la session
+        # Add the question and answer to session history
         session['history'].append({'question': question, 'answer': answer})
 
         log_data = {
@@ -122,16 +128,17 @@ def ask_question():
         with open('logs/requests_log.json', 'a') as log_file:
             log_file.write(json.dumps(log_data) + '\n')
 
-        logger.send_log("New request: " + question, client_ip, client_hostname, r_code=200)
+        logger.send_log("New request: " + question, client_ip, client_hostname, r_code=200, answer=answer)
         
-        # Mettre à jour la session
-        session.modified = True  # Indiquer que la session a été modifiée
+        # Update the session
+        session.modified = True  # Indicate that the session has been modified
 
-        return render_template('index.html', response=answer, form=form, clearform=ClearForm(),history=session['history'])
+        return render_template('index.html', response=answer, form=form, clearform=ClearForm(), history=session['history'])
 
     else:
         logger.send_log("Request failed validation", client_ip, client_hostname, r_code=400)
         return render_template('index.html', form=form, clearform=ClearForm(), history=session['history'])
+
 
 @app.route('/clear_history', methods=['POST'])
 @limiter.limit("5 per minute")
