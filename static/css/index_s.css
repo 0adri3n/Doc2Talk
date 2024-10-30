@@ -97,10 +97,48 @@ main {
     margin-right: auto; /* Pousse le message à gauche */
 }
 
-.input-container {
-    display: flex; /* Permet d'afficher les éléments d'entrée côte à côte */
+/* Style pour le conteneur du choix d'index */
+.input-container label {
+    font-size: 18px;
+    margin-right: 10px;
+    color: #34495e; /* Couleur du texte */
+}
+
+/* Style pour le select */
+#index-select {
     padding: 10px;
-    border-top: 1px solid #ccc; /* Bordure en haut de la zone d'entrée */
+    font-size: 16px;
+    border: 2px solid #3498db; /* Bordure bleue */
+    border-radius: 5px; /* Coins arrondis */
+    background-color: #fff; /* Fond blanc */
+    color: #34495e; /* Couleur du texte */
+    transition: border-color 0.3s; /* Transition douce pour le changement de couleur de bordure */
+    margin-right: 10px; /* Espacement à droite du select */
+}
+
+/* Changement de couleur au survol */
+#index-select:hover {
+    border-color: #2980b9; /* Couleur de bordure plus foncée au survol */
+}
+
+/* Style pour les options */
+#index-select option {
+    padding: 10px; /* Espacement à l'intérieur des options */
+    background-color: #fff; /* Fond blanc pour les options */
+    color: #34495e; /* Couleur du texte */
+}
+
+/* Style pour les options au survol */
+#index-select option:hover {
+    background-color: #f0f0f0; /* Couleur de fond grise au survol */
+}
+
+/* Style pour le formulaire entier */
+.input-container {
+    display: flex; /* Affichage en flex pour aligner le select et le champ de question */
+    align-items: center; /* Centrer verticalement les éléments */
+    padding: 10px; /* Espacement interne */
+    border-top: 1px solid #ccc; /* Bordure en haut */
     background-color: #fff; /* Fond blanc pour l'entrée */
 }
 
