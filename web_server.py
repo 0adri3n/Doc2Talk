@@ -87,6 +87,9 @@ def home():
 def ask_question():
     client_ip = request.remote_addr
 
+    indexer = ElasticIndexer() 
+    indices = indexer.get_all_indices()
+
     try:
         client_hostname = socket.gethostbyaddr(client_ip)[0]
     except socket.herror:
@@ -133,20 +136,22 @@ def ask_question():
         # Update the session
         session.modified = True  # Indicate that the session has been modified
 
-        return render_template('index.html', response=answer, form=form, clearform=ClearForm(), history=session['history'])
+        return render_template('index.html', response=answer, form=form, clearform=ClearForm(), indices=indices, history=session['history'])
 
     else:
         logger.send_log("Request failed validation", client_ip, client_hostname, r_code=400)
-        return render_template('index.html', form=form, clearform=ClearForm(), history=session['history'])
+        return render_template('index.html', form=form, clearform=ClearForm(), indices=indices, history=session['history'])
 
 
 @app.route('/clear_history', methods=['POST'])
 @limiter.limit("5 per minute")
 def clear_history():
     clearform = ClearForm()
+    indexer = ElasticIndexer() 
+    indices = indexer.get_all_indices()
     if clearform.validate_on_submit():
         session.pop('history', None)
-    return render_template('index.html', form=QuestionForm(), clearform=ClearForm(), history=None)
+    return render_template('index.html', form=QuestionForm(), clearform=ClearForm(), indices=indices, history=None)
 
 
 @app.route('/reports')

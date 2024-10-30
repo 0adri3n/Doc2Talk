@@ -5,6 +5,7 @@ from sentence_transformers import SentenceTransformer, models
 from datetime import datetime
 from classes.reader import Reader
 from classes.elastic_indexer import ElasticIndexer
+from tqdm import tqdm  # Import de tqdm pour la barre de progression
 
 class PDFChunker:
 
@@ -73,7 +74,6 @@ class PDFChunker:
 
         return chunks
 
-
     def process_pdf(self, file_name):
         """
         PDF treatement : extract text, chunk it, and vectorize it.
@@ -122,24 +122,26 @@ class PDFChunker:
         Treat all PDFs except already listed ones.
         """
         all_chunks = []
-        for file_name in os.listdir(self.path):
-            if file_name.endswith(".pdf"):
-                if file_name in self.indexed_files:
-                    print(f"File {file_name} already indexed.")
-                    continue
-                
-                print(f"Treating {file_name}...")
-                chunks = self.process_pdf(file_name)
-                if chunks:
-                    vectorized_chunks = self.vectorize_chunks(chunks)
-                    all_chunks.extend(vectorized_chunks)
+        pdf_files = [file_name for file_name in os.listdir(self.path) if file_name.endswith(".pdf")]
 
-                    self.indexer.index_chunks(vectorized_chunks)
+        # Utiliser tqdm pour la barre de progression
+        for file_name in tqdm(pdf_files, desc="Traitement des fichiers PDF", unit="fichier"):
+            if file_name in self.indexed_files:
+                print(f"File {file_name} already indexed.")
+                continue
+            
+            print(f"Traitement de {file_name}...")
+            chunks = self.process_pdf(file_name)
+            if chunks:
+                vectorized_chunks = self.vectorize_chunks(chunks)
+                all_chunks.extend(vectorized_chunks)
 
-                    self.indexed_files[file_name] = {
-                        "path": os.path.join(self.path, file_name),
-                        "indexed_at": datetime.now().isoformat()
-                    }
-                    self.save_indexed_files()  
+                self.indexer.index_chunks(vectorized_chunks)
+
+                self.indexed_files[file_name] = {
+                    "path": os.path.join(self.path, file_name),
+                    "indexed_at": datetime.now().isoformat()
+                }
+                self.save_indexed_files()  
 
         return all_chunks

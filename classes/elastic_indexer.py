@@ -85,6 +85,7 @@ class ElasticIndexer:
         visible_indices = []
 
         for index, details in indices.items():
+            # Exclure les index cachés et ceux qui commencent par un point
             if not index.startswith('.') and not details['aliases']:
                 visible_indices.append(index)
 
