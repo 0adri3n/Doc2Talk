@@ -57,14 +57,14 @@ Here're some of the project's <i>worst</i> features:
 
 4 . Execute ```download_model.py``` to download CrossEncoder and SentenceTransformers models locally (Your data is YOUR data.)
 
-5 . First start ? Execute ```reset_db.py``` to index your very first PDFs to Elastic. Don't forget to put them in the ```pdfs``` folder and to change the index name in the script !
+5 . First start ? Execute ```reset_db.py``` to index your very first PDFs to Elastic. Don't forget to put them in the ```pdfs``` folder and to change the path, the index name and the config path in the script !
 
 6 . Execute ```web_server.py``` and reach your local web server !
 
-Notes . If you want to add PDFs to an index, execute ```index_new_pdf.py``` and don't forget to edit the script to upload to the right index !
+7 . That's it ! Doc2Talk is ready 🕺</p>
 
+**Notes** . If you want to add PDFs to an index, execute ```index_new_pdf.py``` and don't forget to edit the script to upload to the right index (and to specify the folder path) !
 
-<p>3. That's it ! Doc2Talk is ready 🕺</p>
 
 <h2>📃 To-Do List</h2>
 
