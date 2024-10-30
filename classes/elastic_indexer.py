@@ -76,3 +76,16 @@ class ElasticIndexer:
         """
         self.es.delete_by_query(index=self.index_name, body={"query": {"match_all": {}}})
         print(f"All docs from index '{self.index_name}' removed.")
+
+    def get_all_indices(self):
+        """
+        Récupère tous les index disponibles dans Elasticsearch.
+        """
+        indices = self.es.indices.get_alias(index="*")
+        visible_indices = []
+
+        for index, details in indices.items():
+            if not index.startswith('.') and not details['aliases']:
+                visible_indices.append(index)
+
+        return visible_indices
