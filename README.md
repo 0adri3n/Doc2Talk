@@ -70,6 +70,7 @@ Here're some of the project's <i>worst</i> features:
 
 - [ ] Translate to English (GUI, script)
 - [ ] Powershell/Bash script to deploy automatically Docker instances
+- [ ] API routes
 - [ ] Docker Image of Doc2Talk for easy deployment
 - [ ] Better GUI
 - [ ] Optimize performances
