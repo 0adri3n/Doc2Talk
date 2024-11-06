@@ -68,15 +68,17 @@ Here're some of the project's <i>worst</i> features:
 
 <h2>📃 To-Do List</h2>
 
-- [ ] Translate to English (GUI, script)
+- [ ] Replace scripts with an API
+- [ ] Create a Docker instance for every services (Flask Server, APIs)
+- [ ] API routes to ask the LLM
 - [ ] Powershell/Bash script to deploy automatically Docker instances
-- [ ] API routes
 - [ ] Docker Image of Doc2Talk for easy deployment
 - [ ] Better GUI
 - [ ] Optimize performances
 - [X] Create different context, avoid removing all PDFs everytime
 - [ ] So, multiple chats
 - [X] Progression bar when PDF indexing
+- [ ] Translate to English (GUI, script)
 
 <h2>💻 Built with</h2>
 
