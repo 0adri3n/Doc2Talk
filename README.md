@@ -177,7 +177,7 @@ Each request is logged with:
 - [ ] Powershell/Bash script to deploy automatically Docker instances
 - [ ] Docker Image of Doc2Talk for easy deployment
 - [ ] Better GUI
-- [ ] Optimize performances
+- [X] Optimize performances (Llama3.2 --> Gamma2 + better context structure)
 - [X] Create different context, avoid removing all PDFs everytime
 - [ ] So, multiple chats
 - [X] Progression bar when PDF indexing
