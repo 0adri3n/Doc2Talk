@@ -47,7 +47,7 @@ Here're some of the project's <i>worst</i> features:
 - Ollama (No edits necessary) | 
 <a href="https://hub.docker.com/r/ollama/ollama" target="_blank">Installation link</a>
 
-**Please pull Llama 3.2 by executing ```ollama pull llama3.2``` in the Ollama Docker container terminal.**
+**Please pull Gemma 2 by executing ```ollama pull gemma2``` in the Ollama Docker container terminal.**
 
 - Elasticsearch (Remove SSL protection necessary) | 
 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html" target="_blank">Installation link</a> | 
@@ -65,12 +65,115 @@ Here're some of the project's <i>worst</i> features:
 
 **Notes** . If you want to add PDFs to an index, execute ```index_new_pdf.py``` and don't forget to edit the script to upload to the right index (and to specify the folder path) !
 
+<h2>⚡FastAPI Doc</h2>
+
+This API uses **FastAPI** to provide services for processing and indexing PDF documents, as well as managing transformer models. The API includes endpoints for querying documents, downloading models, indexing new PDFs, and resetting an Elasticsearch index.
+
+### Prerequisites
+
+- **Uvicorn** (to run the server) : ```pip install uvicorn```
+
+To start the API server, run:
+```bash
+uvicorn fast_api:app --reload --port 8083
+```
+
+---
+
+### Endpoints
+
+### 1. `/ask` (POST)
+Submits a question to the LLM model based on documents indexed in Elasticsearch.
+
+- **URL**: `/ask`
+- **Method**: POST
+- **Parameters**:
+  - `index_name` (str, required): Name of the Elasticsearch index.
+  - `question` (str, required): The question to ask.
+- **Example Request**:
+  ```bash
+  curl -X POST "http://127.0.0.1:8083/ask" -F "index_name=pdf_dogs" -F "question=Who is the prettiest dog ?"
+  ```
+- **Response**: 
+  ```json
+  {
+    "message": "Query processed successfully.",
+    "question": "Who is the prettiest dog ?",
+    "answer": "<Model-generated answer>"
+  }
+  ```
+
+### 2. `/download-models` (POST)
+Downloads and saves the required transformer models if they are not already available.
+
+- **URL**: `/download-models`
+- **Method**: POST
+- **Description**: Downloads the CrossEncoder and SentenceTransformer models in the background.
+- **Example Request**:
+  ```bash
+  curl -X POST "http://127.0.0.1:8083/download-models"
+  ```
+- **Response**:
+  ```json
+  {
+    "message": "Model download initiated (or skipped if already present)."
+  }
+  ```
+
+### 3. `/index-new-pdf` (POST)
+Indexes a PDF file into the specified Elasticsearch index.
+
+- **URL**: `/index-new-pdf`
+- **Method**: POST
+- **Parameters**:
+  - `index_name` (str, required): Name of the index where the PDF file will be added.
+  - `pdf_file` (file, required): PDF file to be indexed.
+- **Example Request**:
+  ```bash
+  curl -X POST "http://127.0.0.1:8083/index-new-pdf" -F "index_name=pdf_dogs" -F "pdf_file=@path/to/file.pdf"
+  ```
+- **Response**:
+  ```json
+  {
+    "message": "Indexing completed.",
+    "chunks_processed": <Number of processed chunks>,
+    "file_saved": "pdfs/<index_name>/<file_name>.pdf"
+  }
+  ```
+
+### 4. `/reset-index` (POST)
+Resets an Elasticsearch index by deleting all its documents.
+
+- **URL**: `/reset-index`
+- **Method**: POST
+- **Parameters**:
+  - `index_name` (str, required): Name of the index to reset.
+- **Example Request**:
+  ```bash
+  curl -X POST "http://127.0.0.1:8083/reset-index" -F "index_name=pdf_dogs"
+  ```
+- **Response**:
+  ```json
+  {
+    "message": "Index reset.",
+    "index_name": "pdf_dogs"
+  }
+  ```
+
+### Logging
+
+Each request is logged with:
+- Client IP address
+- Hostname (if available)
+- Response code
+- Response content
 
 <h2>📃 To-Do List</h2>
 
-- [ ] Replace scripts with an API
+- [X] Replace scripts with an API
+- [ ] Secure API with tokens
 - [ ] Create a Docker instance for every services (Flask Server, APIs)
-- [ ] API routes to ask the LLM
+- [X] API routes to ask the LLM
 - [ ] Powershell/Bash script to deploy automatically Docker instances
 - [ ] Docker Image of Doc2Talk for easy deployment
 - [ ] Better GUI
@@ -78,7 +181,7 @@ Here're some of the project's <i>worst</i> features:
 - [X] Create different context, avoid removing all PDFs everytime
 - [ ] So, multiple chats
 - [X] Progression bar when PDF indexing
-- [ ] Translate to English (GUI, script)
+- [X] Translate to English (GUI, script)
 
 <h2>💻 Built with</h2>
 
