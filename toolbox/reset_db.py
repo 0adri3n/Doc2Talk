@@ -1,3 +1,9 @@
+import sys
+import os
+
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.insert(0, parent_dir)
+
 from classes.pdf_chunker import PDFChunker
 from classes.elastic_indexer import ElasticIndexer
 
@@ -10,14 +16,14 @@ if choice.upper() == "Y" :
 
     print("\n[Cache file reset]")
 
-    indexer = ElasticIndexer(index_name="pdf_chunks_dogs")
+    indexer = ElasticIndexer(index_name="pdf_dogs")
 
     print("\n[Removing chunks from Elastic]")
     indexer.delete_all_documents()
 
     print("\n[Processing new PDFs]")
 
-    chunker = PDFChunker(path="pdfs/dogs/", config_file="pdfs/dogs/indexed.json", indexer=indexer)
+    chunker = PDFChunker(path="pdfs/pdf_dogs/", config_file="pdfs/pdf_dogs/indexed.json", indexer=indexer)
     processed_data = chunker.process_all_pdfs()
 
     print("\n[Indexing done]")
