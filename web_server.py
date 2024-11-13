@@ -12,6 +12,7 @@ import json
 from classes.user_query import UserQuery
 from classes.query_handler import QueryHandler
 from classes.elastic_indexer import ElasticIndexer
+from classes.prompter import Prompter
 
 app = Flask(__name__)
 
@@ -25,53 +26,9 @@ limiter = Limiter(
 
 csrf = CSRFProtect(app)
 
-logger = Logger()
+logger = Logger(filename="logs_webserver", write_file=True)
 
-def generate_prompt(context_chunks, question):
-    """
-    Construit le prompt pour Ollama avec le contexte et la question.
-    """
-    context_text = "\n\n".join([chunk['Chunk Text'] for chunk in context_chunks])  # Limiter à 5 chunks par ex.
-    prompt = (
-        "You are a knowledgeable assistant.\n"
-        "Please answer the following question using the provided context.\n\n"
-        "Context:\n"
-        f"{context_text}\n\n"
-        "Question:\n"
-        f"{question}\n\n"
-        "Answer:"
-    )
-    return prompt
-
-import requests
-
-def get_response_from_ollama(prompt):
-    """
-    Envoie le prompt au serveur Ollama et récupère la réponse.
-    """
-    url = "http://localhost:11434/api/generate"  # URL mise à jour pour Ollama
-    payload = {
-        "model": "llama3.2",  # Modèle spécifié
-        "prompt": prompt,
-        "stream": False
-    }
-    headers = {"Content-Type": "application/json"}
-
-    response = requests.post(url, json=payload, headers=headers)
-    if response.status_code == 200:
-        try:
-            data = json.loads(response.text)
-            api_response = data.get("response", "")
-            
-            if not data.get("done", False): 
-                print("Le traitement n'est pas encore terminé.")
-            else:
-                return api_response 
-        except json.JSONDecodeError as e:
-            print(f"Erreur lors du décodage de la réponse JSON: {e}")
-    else:
-        return("Erreur:", response.text)
-
+prompter = Prompter(model="gemma2")
 
 @app.route('/')
 def home():
@@ -87,13 +44,13 @@ def home():
 def ask_question():
     client_ip = request.remote_addr
 
-    indexer = ElasticIndexer() 
+    indexer = ElasticIndexer(index_name="") 
     indices = indexer.get_all_indices()
 
     try:
         client_hostname = socket.gethostbyaddr(client_ip)[0]
     except socket.herror:
-        client_hostname = "Nom d'hôte non disponible"
+        client_hostname = "Hostname unavailable"
 
     form = QuestionForm()
 
@@ -112,11 +69,12 @@ def ask_question():
         # Query and process the response
         response = user_query.query(question, method="rrf")
         results = user_query.get_metadata_as_list(response)
+        print(results)
         reranked_results = query_handler.rerank_results(question=question, results_as_list=results)
 
-        prompt = generate_prompt(reranked_results, question)
+        prompt = prompter.generate_prompt(reranked_results, question)
 
-        answer = get_response_from_ollama(prompt)
+        answer = prompter.get_response_from_ollama(prompt)
 
         # Add the question and answer to session history
         session['history'].append({'question': question, 'answer': answer})

@@ -35,6 +35,21 @@ class QueryHandler:
 
         scores = self.cross_encoder.predict(pairs)
 
-        reranked_results = sorted(zip(results_as_list, scores), key=lambda x: x[1], reverse=True)
+        reranked_results = sorted(
+            zip(results_as_list, scores),
+            key=lambda x: x[1],
+            reverse=True
+        )
 
-        return [result for result, _ in reranked_results]
+        return [
+            {
+                "Title": result['Title'],
+                "Path": result['Path'],
+                "File Name": result['File Name'],
+                "Chunk ID": result['Chunk ID'],
+                "Timestamp": result['Timestamp'],
+                "Chunk Text": result['Chunk Text']
+            }
+            for result, score in reranked_results
+        ]
+

@@ -17,8 +17,9 @@ class ElasticIndexer:
             self.password = config.get("password")
 
         self.es = Elasticsearch(self.url, basic_auth=(self.username, self.password))
-        self.index_name = index_name
-        self.create_index_if_not_exists()
+        if index_name != "":
+            self.index_name = index_name
+            self.create_index_if_not_exists()
 
     def create_index_if_not_exists(self):
         """
@@ -79,13 +80,12 @@ class ElasticIndexer:
 
     def get_all_indices(self):
         """
-        Récupère tous les index disponibles dans Elasticsearch.
+        Get all indices in Elasticsearch.
         """
         indices = self.es.indices.get_alias(index="*")
         visible_indices = []
 
         for index, details in indices.items():
-            # Exclure les index cachés et ceux qui commencent par un point
             if not index.startswith('.') and not details['aliases']:
                 visible_indices.append(index)
 

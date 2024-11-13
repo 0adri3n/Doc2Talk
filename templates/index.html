@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="eng">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,9 +13,8 @@
             <h1>Doc2Talk</h1>
         </div>
         <nav class="menu">
-            <a href="/" class="nav-button">Accueil</a>
-            <a href="#" class="nav-button">Aide</a>
-            <a href="/reports" class="nav-button">Data Reports</a>
+            <a href="/" class="nav-button">Home</a>
+            <a href="#" class="nav-button">Help</a>
         </nav>
     </header>
 
@@ -25,10 +24,10 @@
                 {% if history %}
                 {% for item in history %}
                 <div class="message user-message">
-                    <strong>Vous:</strong> {{ item.question }}
+                    <strong>You :</strong> {{ item.question }}
                 </div>
                 <div class="message bot-message" style="white-space: pre-line">
-                    <strong>Bot:</strong> {{ item.answer }}
+                    <strong>Doc2Talk :</strong> {{ item.answer }}
                 </div>
                 {% endfor %}
                 {% endif %}
@@ -36,13 +35,13 @@
                         
             <form action="/ask" method="POST" class="input-container">
                 {{ form.hidden_tag() }}
-                <label for="index-select">Choisir un index:</label>
+                <label for="index-select">Select index:</label>
                 <select name="selected_index" id="index-select" required>
                     {% for index in indices %}
                         <option value="{{ index }}">{{ index }}</option>
                     {% endfor %}
                 </select>
-                {{ form.question(class_="question-input", placeholder="Posez votre question ici...") }}
+                {{ form.question(class_="question-input", placeholder="Ask your question here...") }}
                 {{ form.submit(class_="submit-button") }}
             </form>
             <form action="/clear_history" method="POST" class="input-container">

@@ -3,4 +3,4 @@ from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired, Length
 
 class ClearForm(FlaskForm):
-    submit = SubmitField("Nettoyer l'historique")
+    submit = SubmitField("Clear history")
