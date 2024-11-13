@@ -193,6 +193,7 @@ Technologies used in the project:
 *   HuggingFace models
 *   Ollama
 *   ElasticSearch
+*   FastAPI
 
 <h2>🛡️ License:</h2>
 
