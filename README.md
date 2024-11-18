@@ -27,6 +27,7 @@ Here're some of the project's best features:
 *   Host your models locally (privacy max 😎)
 *   Host your Ollama server
 *   Interact with your own chatbot to learn easily from your documentations
+*   Request Doc2Talk's Fast API with your own scripts
 
 Here're some of the project's <i>worst</i> features:
 
@@ -67,15 +68,17 @@ Here're some of the project's <i>worst</i> features:
 
 <h2>⚡FastAPI Doc</h2>
 
-This API uses **FastAPI** to provide services for processing and indexing PDF documents, as well as managing transformer models. The API includes endpoints for querying documents, downloading models, indexing new PDFs, and resetting an Elasticsearch index.
+This API uses **FastAPI** to provide services for processing and indexing PDF documents, as well as managing transformer models. The API includes endpoints for querying documents, downloading models, indexing new PDFs, and resetting an Elasticsearch index. Protected with a token system, the API is secured and track user's requests. User's token are encrypted with Triple DES and stored in a Database.
 
 ### Prerequisites
 
-- **Uvicorn** (to run the server) : ```pip install uvicorn```
+- **Encryption Key** (Create a 24 bytes key) : ```python toolbox/generate_key.py```
+- **Token Database** (Create a token database on first start) : ```python toolbox/token_manager.py```
+
 
 To start the API server, run:
 ```bash
-uvicorn fast_api:app --reload --port 8083
+uvicorn fast_api:app --host 0.0.0.0 --reload --port 8083
 ```
 
 ---
@@ -92,7 +95,7 @@ Submits a question to the LLM model based on documents indexed in Elasticsearch.
   - `question` (str, required): The question to ask.
 - **Example Request**:
   ```bash
-  curl -X POST "http://127.0.0.1:8083/ask" -F "index_name=pdf_dogs" -F "question=Who is the prettiest dog ?"
+  curl -X POST "http://127.0.0.1:8083/ask" -F "index_name=pdf_dogs" -F "question=Who is the prettiest dog ?"  -H "Authorization: Bearer <YOUR_TOKEN>"
   ```
 - **Response**: 
   ```json
@@ -111,7 +114,7 @@ Downloads and saves the required transformer models if they are not already avai
 - **Description**: Downloads the CrossEncoder and SentenceTransformer models in the background.
 - **Example Request**:
   ```bash
-  curl -X POST "http://127.0.0.1:8083/download-models"
+  curl -X POST "http://127.0.0.1:8083/download-models -H "Authorization: Bearer <YOUR_TOKEN>""
   ```
 - **Response**:
   ```json
@@ -130,7 +133,7 @@ Indexes a PDF file into the specified Elasticsearch index.
   - `pdf_file` (file, required): PDF file to be indexed.
 - **Example Request**:
   ```bash
-  curl -X POST "http://127.0.0.1:8083/index-new-pdf" -F "index_name=pdf_dogs" -F "pdf_file=@path/to/file.pdf"
+  curl -X POST "http://127.0.0.1:8083/index-new-pdf" -F "index_name=pdf_dogs" -F "pdf_file=@path/to/file.pdf -H "Authorization: Bearer <YOUR_TOKEN>""
   ```
 - **Response**:
   ```json
@@ -150,13 +153,28 @@ Resets an Elasticsearch index by deleting all its documents.
   - `index_name` (str, required): Name of the index to reset.
 - **Example Request**:
   ```bash
-  curl -X POST "http://127.0.0.1:8083/reset-index" -F "index_name=pdf_dogs"
+  curl -X POST "http://127.0.0.1:8083/reset-index" -F "index_name=pdf_dogs -H "Authorization: Bearer <YOUR_TOKEN>""
   ```
 - **Response**:
   ```json
   {
     "message": "Index reset.",
     "index_name": "pdf_dogs"
+  }
+  ```
+
+  ### 4. `/test-endpoint` (GET)
+Just a test endpoint.
+- **URL**: `/test-endpoint`
+- **Method**: GET
+- **Example Request**:
+  ```bash
+  curl -X GET "http://127.0.0.1:8083/test-endpoint" -H "Authorization: Bearer <YOUR_TOKEN>""
+  ```
+- **Response**:
+  ```json
+  {
+      "message": "Secure endpoint accessed successfully."
   }
   ```
 
@@ -168,10 +186,14 @@ Each request is logged with:
 - Response code
 - Response content
 
+### Protection
+
+As an admin, storing the encryption key and the database on a portable device (USB) is advised. Edit the ```data/data_location.json``` and set the locations on your USB.
+
 <h2>📃 To-Do List</h2>
 
 - [X] Replace scripts with an API
-- [ ] Secure API with tokens
+- [X] Secure API with tokens
 - [ ] Create a Docker instance for every services (Flask Server, APIs)
 - [X] API routes to ask the LLM
 - [ ] Powershell/Bash script to deploy automatically Docker instances
@@ -182,6 +204,7 @@ Each request is logged with:
 - [ ] So, multiple chats
 - [X] Progression bar when PDF indexing
 - [X] Translate to English (GUI, script)
+- [ ] Benchmark differents models
 
 <h2>💻 Built with</h2>
 
@@ -194,6 +217,7 @@ Technologies used in the project:
 *   Ollama
 *   ElasticSearch
 *   FastAPI
+*   Triple DES
 
 <h2>🛡️ License:</h2>
 
