@@ -2,7 +2,7 @@ from fastapi import FastAPI, BackgroundTasks, Request, File, UploadFile, Form, H
 import socket
 import sqlite3
 import json
-from cryptography.fernet import Fernet
+from pyDes import triple_des
 from pathlib import Path
 from functools import wraps
 
@@ -38,10 +38,11 @@ def validate_token(token: str):
     config = load_config()
     db_path = config["db_path"]
     encryption_key = load_encryption_key()
-    fernet = Fernet(encryption_key)
+    encrypted_token = triple_des(encryption_key).encrypt(token, padmode=2)
+    print(encrypted_token)
     with sqlite3.connect(db_path) as conn:
         cursor = conn.cursor()
-        cursor.execute("SELECT token FROM tokens WHERE token = ?", (token,))
+        cursor.execute("SELECT token FROM tokens WHERE token = ?", (encrypted_token,))
         if not cursor.fetchone():
             raise HTTPException(status_code=403, detail="Invalid or unauthorized token.")
 

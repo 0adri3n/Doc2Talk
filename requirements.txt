@@ -1,6 +1,7 @@
 elasticsearch==7.17.12
 fastapi==0.115.5
 cryptography==43.0.3
+uvicorn==0.32.0
 Flask==3.0.3
 Flask_Limiter==3.8.0
 flask_wtf==1.2.2
@@ -9,3 +10,5 @@ Requests==2.32.3
 sentence_transformers==3.0.0
 tqdm==4.66.5
 WTForms==3.2.1
+pyDes==2.0.1
+secret==0.8
