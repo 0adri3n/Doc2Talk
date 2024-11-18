@@ -114,7 +114,7 @@ Downloads and saves the required transformer models if they are not already avai
 - **Description**: Downloads the CrossEncoder and SentenceTransformer models in the background.
 - **Example Request**:
   ```bash
-  curl -X POST "http://127.0.0.1:8083/download-models -H "Authorization: Bearer <YOUR_TOKEN>"
+  curl -X POST "http://127.0.0.1:8083/download-models" -H "Authorization: Bearer <YOUR_TOKEN>"
   ```
 - **Response**:
   ```json
@@ -133,7 +133,7 @@ Indexes a PDF file into the specified Elasticsearch index.
   - `pdf_file` (file, required): PDF file to be indexed.
 - **Example Request**:
   ```bash
-  curl -X POST "http://127.0.0.1:8083/index-new-pdf" -F "index_name=pdf_dogs" -F "pdf_file=@path/to/file.pdf -H "Authorization: Bearer <YOUR_TOKEN>"
+  curl -X POST "http://127.0.0.1:8083/index-new-pdf" -F "index_name=pdf_dogs" -F "pdf_file=@path/to/file.pdf" -H "Authorization: Bearer <YOUR_TOKEN>"
   ```
 - **Response**:
   ```json
@@ -153,7 +153,7 @@ Resets an Elasticsearch index by deleting all its documents.
   - `index_name` (str, required): Name of the index to reset.
 - **Example Request**:
   ```bash
-  curl -X POST "http://127.0.0.1:8083/reset-index" -F "index_name=pdf_dogs -H "Authorization: Bearer <YOUR_TOKEN>"
+  curl -X POST "http://127.0.0.1:8083/reset-index" -F "index_name=pdf_dogs" -H "Authorization: Bearer <YOUR_TOKEN>"
   ```
 - **Response**:
   ```json
