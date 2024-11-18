@@ -69,7 +69,6 @@ class TokenManager:
         token = str(uuid.uuid4())
         encrypted_token = self.encrypted_db.encrypt(token)
         created_at = datetime.datetime.utcnow().isoformat()
-        print(encrypted_token)
         # Store token in the database
         with sqlite3.connect(self.db_path) as conn:
             cursor = conn.cursor()
