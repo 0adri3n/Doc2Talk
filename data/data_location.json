@@ -1,0 +1,4 @@
+{
+    "encryption_key_path": "data/doc2talk_encryption_key.key",
+    "db_path": "data/secure_tokens.db"
+}
