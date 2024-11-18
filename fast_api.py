@@ -39,7 +39,6 @@ def validate_token(token: str):
     db_path = config["db_path"]
     encryption_key = load_encryption_key()
     encrypted_token = triple_des(encryption_key).encrypt(token, padmode=2)
-    print(encrypted_token)
     with sqlite3.connect(db_path) as conn:
         cursor = conn.cursor()
         cursor.execute("SELECT token FROM tokens WHERE token = ?", (encrypted_token,))
