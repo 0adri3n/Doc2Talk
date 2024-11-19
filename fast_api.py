@@ -5,6 +5,7 @@ import json
 from pyDes import triple_des
 from pathlib import Path
 from functools import wraps
+import httpx
 
 from classes.logger import Logger
 from classes.prompter import Prompter
@@ -18,7 +19,7 @@ app = FastAPI()
 # uvicorn fast_api:app --host 0.0.0.0 --reload --port 8083
 
 logger = Logger(filename="logs_fastapi", write_file=True)
-prompter = Prompter(model="gemma2")
+
 
 CONFIG_PATH = "data/data_location.json"
 
@@ -92,21 +93,52 @@ async def secure_endpoint(request: Request):
 
 @app.post("/ask")
 @token_required
-async def query_llm(request: Request, index_name: str = Form(...), question: str = Form(...)):
+async def query_llm(request: Request, index_name: str = Form(...), question: str = Form(...), model: str = Form(...)):
+
     client_ip = request.client.host
     try:
         client_hostname = socket.gethostbyaddr(client_ip)[0]
     except socket.herror:
         client_hostname = "Hostname unavailable"
+
+    try:
+
+        async with httpx.AsyncClient() as client:
+            response = await client.get("http://localhost:11434/api/tags")
+        response.raise_for_status()
+        models = [m["name"] for m in response.json().get("models", [])]
+
+        if model not in models:
+            logger.send_log(
+                f"FAST API request : /ask failed. Model '{model}' not available.",
+                client_ip,
+                client_hostname,
+                r_code=400,
+                answer=f"Model '{model}' is not available."
+            )
+            raise HTTPException(status_code=400, detail=f"Model '{model}' is not available.")
+
+    except Exception as e:
+        logger.send_log(
+            f"FAST API request : /ask failed while retrieving models.",
+            client_ip,
+            client_hostname,
+            r_code=500,
+            answer=str(e)
+        )
+        raise HTTPException(status_code=500, detail="Failed to retrieve models from Ollama.")
+
     user_query = UserQuery(index_name=index_name)
     query_handler = QueryHandler(index_name=index_name)
     response = user_query.query(question, method="rrf")
     results = user_query.get_metadata_as_list(response)
     reranked_results = query_handler.rerank_results(question=question, results_as_list=results)
+
+    prompter = Prompter(model=model)
     prompt = prompter.generate_prompt(reranked_results, question)
     answer = prompter.get_response_from_ollama(prompt)
     logger.send_log(
-        f"FAST API request : /ask, question: {question} | index: {index_name}",
+        f"FAST API request : /ask, question: {question} | index: {index_name} | model: {model}",
         client_ip,
         client_hostname,
         r_code=200,
@@ -117,6 +149,7 @@ async def query_llm(request: Request, index_name: str = Form(...), question: str
         "question": question,
         "answer": answer
     }
+
 
 @app.post("/download-models")
 @token_required
@@ -181,3 +214,36 @@ async def reset_index(request: Request, index_name: str = Form(...)):
         "message": "Index reset.",
         "index_name": index_name
     }
+
+@app.get("/check-models")
+@token_required
+async def check_models(request: Request):
+    client_ip = request.client.host
+    try:
+        client_hostname = socket.gethostbyaddr(client_ip)[0]
+    except socket.herror:
+        client_hostname = "Hostname unavailable"
+
+    try:
+        async with httpx.AsyncClient() as client:
+            response = await client.get("http://localhost:11434/api/tags")
+        response.raise_for_status()
+        models = response.json().get("models", [])
+    except Exception as e:
+        logger.send_log(
+            "FAST API request : /check-models failed",
+            client_ip,
+            client_hostname,
+            r_code=500,
+            answer=str(e)
+        )
+        raise HTTPException(status_code=500, detail="Failed to retrieve models from Ollama.")
+
+    logger.send_log(
+        "FAST API request : /check-models succeeded",
+        client_ip,
+        client_hostname,
+        r_code=200,
+        answer="Models retrieved successfully."
+    )
+    return {"models": [model["name"] for model in models]}
