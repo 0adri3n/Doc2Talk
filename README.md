@@ -282,6 +282,8 @@ As an admin, storing the encryption key and the database on a portable device (U
 
 ### Benchmark Responses
 
+*Requested document can be found <a href="https://github.com/0adri3n/Doc2Talk/blob/277a210a361161e7d8818f016a94c0fa093fe262/pdfs/brain_addiction/review.pdf">here</a>*
+
 #### **Question 1:** *What are the risk factors for addiction mentioned in the document?*
 
 | model            | response                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | time_taken         |
