@@ -93,9 +93,10 @@ Submits a question to the LLM model based on documents indexed in Elasticsearch.
 - **Parameters**:
   - `index_name` (str, required): Name of the Elasticsearch index.
   - `question` (str, required): The question to ask.
+  - `model` (str, required): Name of model to use for the prompt.
 - **Example Request**:
   ```bash
-  curl -X POST "http://127.0.0.1:8083/ask" -F "index_name=pdf_dogs" -F "question=Who is the prettiest dog ?"  -H "Authorization: Bearer <YOUR_TOKEN>"
+  curl -X POST "http://127.0.0.1:8083/ask" -F "index_name=pdf_dogs" -F "question=Who is the prettiest dog ?" -F "model=gemma2:latest"  -H "Authorization: Bearer <YOUR_TOKEN>"
   ```
 - **Response**: 
   ```json
@@ -163,7 +164,29 @@ Resets an Elasticsearch index by deleting all its documents.
   }
   ```
 
-  ### 4. `/test-endpoint` (GET)
+  ### 5. `/check-models` (POST)
+Check loaded models on Ollama instance.
+
+- **URL**: `/check-models`
+- **Method**: GET
+- **Example Request**:
+  ```bash
+  curl -X GET "http://127.0.0.1:8083/check-models" -H "Authorization: Bearer <YOUR_TOKEN>"
+  ```
+- **Response**:
+  ```json
+  {
+      "models": [
+          "mistral:latest",
+          "phi3:3.8b",
+          "qwen2.5-coder:3b",
+          "gemma2:latest",
+          "llama3.2:latest"
+      ]
+  }
+  ```
+
+  ### 6. `/test-endpoint` (GET)
 Just a test endpoint.
 - **URL**: `/test-endpoint`
 - **Method**: GET
