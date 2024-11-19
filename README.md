@@ -236,6 +236,9 @@ As an admin, storing the encryption key and the database on a portable device (U
 - **Memory Usage:**
   - Peaked at **27.02GB** out of 30.48GB.
   - Steady increments in memory consumption noted during benchmark progression.
+ 
+![image](https://github.com/user-attachments/assets/7ffa4cd7-0f18-4559-9d46-2914d59f5734)
+
 
 #### **Linguistic Robustness**
 - All five models can write almost perfectly in English. However, I've already seen some grammatical faults in other languages like French while using Llama3.2.
