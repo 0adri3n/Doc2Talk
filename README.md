@@ -6,19 +6,32 @@
 
 ---
 
+# Summary
 
-<h2>Project Screenshots:</h2>
+- [Project Screenshots](#project-screenshots)
+- [⚙ Project Architecture](#-project-architecture)
+- [🧐 Features](#-features)
+- [🛠️ Installation Steps](#️-installation-steps)
+- [⚡FastAPI Doc](#fastapi-doc)
+- [📋 Ollama Models Benchmark Summary](#ollama-models-benchmark-summary)
+- [📃 To-Do List](#to-do-list)
+- [💻 Built with](#-built-with)
+- [🛡️ License](#license)
+- [💖Like my work?](#like-my-work)
+
+
+<h2 id="project-screenshot">Project Screenshots:</h2>
 
 ![image](https://github.com/user-attachments/assets/d94efb12-6219-4a1b-9b4f-f511daefbe30)
 
 ![image](https://github.com/user-attachments/assets/5ccacb5b-3a82-40fa-8284-796afa7ebc3d)
 
-<h2>⚙ Project Architecture</h2>
+<h2 id="project-architecture">⚙ Project Architecture</h2>
 
 ![image](https://github.com/user-attachments/assets/dce23594-4d2f-4177-a42f-4581d3b9a83f)
 
 
-<h2>🧐 Features</h2>
+<h2 id="-features">🧐 Features</h2>
 
 Here're some of the project's best features:
 
@@ -215,7 +228,7 @@ As an admin, storing the encryption key and the database on a portable device (U
 
 ---
 
-<h2>Ollama Models Benchmark Summary</h2>
+## 📋Ollama Models Benchmark Summary
 
 #### **Time Performance**
 | Model                  | Total Time (s) | Average Time per Query (s) | Number of Queries |
