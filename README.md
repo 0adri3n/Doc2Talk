@@ -15,12 +15,9 @@
 - [⚡FastAPI Doc](#fastapi-doc)
 - [📋 Ollama Models Benchmark Summary](#ollama-models-benchmark-summary)
 - [📃 To-Do List](#to-do-list)
-- [💻 Built with](#-built-with)
-- [🛡️ License](#license)
-- [💖Like my work?](#like-my-work)
 
 
-<h2 id="project-screenshot">Project Screenshots:</h2>
+## Project Screenshots:
 
 ![image](https://github.com/user-attachments/assets/d94efb12-6219-4a1b-9b4f-f511daefbe30)
 
@@ -31,7 +28,7 @@
 ![image](https://github.com/user-attachments/assets/dce23594-4d2f-4177-a42f-4581d3b9a83f)
 
 
-<h2 id="-features">🧐 Features</h2>
+## 🧐 Features
 
 Here're some of the project's best features:
 
@@ -79,7 +76,7 @@ Here're some of the project's <i>worst</i> features:
 
 **Notes** . If you want to add PDFs to an index, execute ```index_new_pdf.py``` and don't forget to edit the script to upload to the right index (and to specify the folder path) !
 
-<h2>⚡FastAPI Doc</h2>
+## ⚡FastAPI Doc
 
 This API uses **FastAPI** to provide services for processing and indexing PDF documents, as well as managing transformer models. The API includes endpoints for querying documents, downloading models, indexing new PDFs, and resetting an Elasticsearch index. Protected with a token system, the API is secured and track user's requests. User's token are encrypted with Triple DES and stored in a Database.
 
@@ -323,7 +320,7 @@ As an admin, storing the encryption key and the database on a portable device (U
 
 ---
 
-<h2>📃 To-Do List</h2>
+## 📃To-Do List
 
 - [X] Replace scripts with an API
 - [X] Secure API with tokens
@@ -339,7 +336,7 @@ As an admin, storing the encryption key and the database on a portable device (U
 - [X] Translate to English (GUI, script)
 - [X] Benchmark differents models
 
-<h2>💻 Built with</h2>
+## 💻 Built with
 
 Technologies used in the project:
 
@@ -352,8 +349,6 @@ Technologies used in the project:
 *   FastAPI
 *   Triple DES
 
-<h2>🛡️ License:</h2>
+## 🛡️ License
 
 This project is licensed under the MIT
-
-<h2>💖Like my work?</h2>
