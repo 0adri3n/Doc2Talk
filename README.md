@@ -8,7 +8,7 @@
 
 # Summary
 
-- [Project Screenshots](#project-screenshots)
+- [📸Project Screenshots](#project-screenshots)
 - [⚙ Project Architecture](#-project-architecture)
 - [🧐 Features](#-features)
 - [🛠️ Installation Steps](#️-installation-steps)
@@ -17,13 +17,13 @@
 - [📃 To-Do List](#to-do-list)
 
 
-## Project Screenshots:
+## 📸Project Screenshots
 
 ![image](https://github.com/user-attachments/assets/d94efb12-6219-4a1b-9b4f-f511daefbe30)
 
 ![image](https://github.com/user-attachments/assets/5ccacb5b-3a82-40fa-8284-796afa7ebc3d)
 
-<h2 id="project-architecture">⚙ Project Architecture</h2>
+## ⚙ Project Architecture
 
 ![image](https://github.com/user-attachments/assets/dce23594-4d2f-4177-a42f-4581d3b9a83f)
 
