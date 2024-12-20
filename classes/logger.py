@@ -15,7 +15,7 @@ class Logger:
 
         date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-        log = "[" + self.software + " " + self.version + "] - " + date + " - " + message + " | From : " + client_ip + " - Hostname : " + client_hostname + " | Code " + str(r_code) + " | Answer : " + answer
+        log = "[" + self.software + " " + self.version + "] - " + date + " - " + message + " | From : " + client_ip + " - Hostname : " + client_hostname + " | Answer : " + answer
 
         if self.file_log : 
 
